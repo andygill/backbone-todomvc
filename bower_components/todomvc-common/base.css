@@ -569,3 +569,36 @@ hr {
 	-webkit-transition: all 0.2s;
 	transition: all 0.2s;
 }
+
+#todo-list li .bump {
+	position: absolute;
+	top: 0;
+	left: -50px;
+	bottom: -10px;
+	width: 40px;
+	height: 40px;
+	margin: auto 0;
+	font-size: 18px;
+	color: #a88a8a;
+	-webkit-transition: all 0.2s;
+	transition: all 0.2s;
+}
+
+#todo-list li .date-edit {
+	display: none;
+}
+
+#todo-list li.editing .date-edit {
+  display: inline;
+	position: absolute;
+	top: 0;
+	right: -50px;
+	bottom: -10px;
+	width: 40px;
+	height: 40px;
+	margin: auto 0;
+	font-size: 18px;
+	color: #a88a8a;
+	-webkit-transition: all 0.2s;
+	transition: all 0.2s;
+}

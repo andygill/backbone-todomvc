@@ -17,6 +17,7 @@ var app = app || {};
 
 		// The DOM events specific to an item.
 		events: {
+			'click .date-edit': function() { console.log('select')},
 			'click .toggle': 'toggleCompleted',
 			'dblclick label': 'edit',
 			'click .destroy': 'clear',
@@ -80,6 +81,7 @@ var app = app || {};
 
 		// Close the `"editing"` mode, saving changes to the todo.
 		close: function () {
+			console.log('close')
 			var value = this.$input.val();
 			var trimmedValue = value.trim();
 
