@@ -11,7 +11,9 @@ $(function () {
  app.Date = function (date_string) {
 	var m = null;
 
-	if (date_string == null || date_string == undefined || date_string == "") {
+	if (date_string == "today") {
+		m = moment().startOf('day');
+	} else if (date_string == null || date_string == undefined || date_string == "") {
 		// do nothing
   } else {
 		m = moment(date_string, "YYYY-MM-DD");
@@ -48,7 +50,10 @@ $(function () {
   // *returns* Date with the date bumped
   this.bumpDate = function(inc) {
 		var that = this.clone();
-		if (m != null) { that.m.add('days',inc); }
+		if (m == null) {
+			that = new app.Date('today');
+		}
+		that.m.add('days',inc);
 		return that;
 	}
  }

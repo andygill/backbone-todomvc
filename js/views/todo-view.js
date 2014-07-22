@@ -23,7 +23,7 @@ var app = app || {};
 			'click .destroy': 'clear',
 			'keypress .edit': 'updateOnEnter',
 			'keydown .edit': 'revertOnEscape',
-			'dblclick .ego': 'tomorrow',
+			'click .ego': 'tomorrow',
 			'blur .edit': 'close'
 		},
 
