@@ -23,6 +23,7 @@ var app = app || {};
 			'click .destroy': 'clear',
 			'keypress .edit': 'updateOnEnter',
 			'keydown .edit': 'revertOnEscape',
+			'dblclick .ego': 'tomorrow',
 			'blur .edit': 'close'
 		},
 
@@ -126,6 +127,11 @@ var app = app || {};
 				// Also reset the hidden input back to the original value.
 				this.$input.val(this.model.get('title'));
 			}
+		},
+
+	  tomorrow: function(e) {
+			console.log('tomorrow');
+			this.model.bump(1);
 		},
 
 		// Remove the item, destroy the model from *localStorage* and delete its view.

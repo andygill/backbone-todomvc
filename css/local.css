@@ -1,22 +1,57 @@
-#todo-list li .date {
+body {
+  margin: 0 200px;
+}
+
+#todoapp {
+  margin: 30px 0 40px 0;
+}
+
+#todo-list li .do-on {
   position: absolute;
   top: 0;
-  right: -20px;
+  left: -170px;
   bottom: -10px;
-  width: 0px;
+  width: 160px;
   height: 40px;
   margin: auto 0;
   font-size: 18px;
+  text-align: right;
+  color: #a88a8a;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+#todo-list li .do-by {
+  position: absolute;
+  top: 0;
+  right: -170px;
+  bottom: -10px;
+  width: 160px;
+  height: 40px;
+  margin: auto 0;
+  font-size: 18px;
+  text-align: right;
   color: #a88a8a;
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
 }
 
+
 #todo-list li .ego {
   position: absolute;
+  top: 0;
+  right: 10px;
   top: 20px;
-  left: -40px;
   margin: auto 0;
   font-size: 32px;
   color: #a88a8a;
+}
+
+#timetable {
+  position: fixed;
+  border: 1px solid black;
+  top: 10px;
+  right: 10px;
+  font-size: 32px;
+  line-height: 1.4em;
+  text-align: right;
 }
