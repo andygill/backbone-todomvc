@@ -17,7 +17,7 @@ var app = app || {};
 
 		// The DOM events specific to an item.
 		events: {
-			'click .date-edit': function() { console.log('select')},
+//			'click .date-edit': function() { console.log('select')},
 			'click .toggle': 'toggleCompleted',
 			'dblclick label': 'edit',
 			'click .destroy': 'clear',

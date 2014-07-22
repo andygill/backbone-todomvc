@@ -4,6 +4,7 @@
 		<meta charset="utf-8">
 		<title>Backbone.js • TodoMVC</title>
 		<link rel="stylesheet" href="bower_components/todomvc-common/base.css">
+		<link rel="stylesheet" href="css/local.css">
 	</head>
 	<body>
 		<section id="todoapp">
@@ -26,19 +27,13 @@
 		<script type="text/template" id="item-template">
 			<div class="view">
 				<input class="toggle" type="checkbox" <%= completed ? 'checked' : '' %>>
-				<button class="bump">+1</button>
 				<label><%- title %></label>
 				<button class="destroy"></button>
+				<button class="bump"></button>
 			</div>
-			<span class="date"><%- date %></span>
-			<input class="edit" value="<%- title %>">
-			<span class="date-edit">
-				<select class="date-select">
-				  <option>Milk</option>
-				  <option>Coffee</option>
-				  <option>Tea</option>
-				</select>
-			</span>
+			<span class="date"><%= date %></span>
+			<span class="ego">&#9635;</span>
+
 		</script>
 		<script type="text/template" id="stats-template">
 			<span id="todo-count"><strong><%= remaining %></strong> <%= remaining === 1 ? 'item' : 'items' %> left</span>
@@ -61,7 +56,7 @@
 			<% } %>
 		</script>
 		<script src="bower_components/todomvc-common/base.js"></script>
-		<script src="bower_components/jquery/jquery.js"></script>
+x		<script src="bower_components/jquery/jquery.js"></script>
 		<script src="bower_components/underscore/underscore.js"></script>
 		<script src="bower_components/backbone/backbone.js"></script>
 		<script src="bower_components/backbone.localStorage/backbone.localStorage.js"></script>
