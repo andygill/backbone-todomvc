@@ -65,6 +65,11 @@ $(function () {
 			return m.startOf('day').diff(moment().startOf('day'),'days') == 0;
 		}
 
+		this.isPast = function() {
+			if (m == null) { return true; }
+			return m.startOf('day').diff(moment().startOf('day'),'days') < 0;
+		}
+
   }
 
 	// kick things off by creating the `App`

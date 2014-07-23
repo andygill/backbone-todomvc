@@ -26,9 +26,10 @@ var app = app || {};
 		},
 
 	  // bump by a day. A currently empty date always bumps to *today*.
+		// Days in the past also *always* bump today.
 		bump: function () {
 			var date = new app.Date(this.get("do_on"));
-			if (date.isEmpty()) {
+			if (date.isEmpty() || date.isPast()) {
 				this.set('do_on',new app.Date("today").toString());
 			} else {
 				this.set('do_on',date.bumpDate(1).toString());
