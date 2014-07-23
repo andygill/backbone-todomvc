@@ -54,6 +54,8 @@ var app = app || {};
 			this.$el.toggleClass('completed', this.model.get('completed'));
 			this.toggleVisible();
 			this.$input = this.$('.edit');
+			this.$el.attr("sort-by",this.model.get('do_on'))
+			$( ".draggable" ).draggable({cursor: "move", revert: true, helper: "clone" });
 			return this;
 		},
 

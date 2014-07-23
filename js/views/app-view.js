@@ -40,6 +40,7 @@ var app = app || {};
 			this.listenTo(app.todos, 'filter', this.filterAll);
 			this.listenTo(app.todos, 'all', this.render);
 
+
 			// Suppresses 'add' events with {reset: true} and prevents the app view
 			// from being re-rendered for every model. Only renders when the 'reset'
 			// event is triggered at the end of the fetch.
@@ -49,10 +50,59 @@ var app = app || {};
 		// Re-rendering the App just means refreshing the statistics -- the rest
 		// of the app doesn't change.
 		render: function () {
+			console.log('render')
 			var completed = app.todos.completed().length;
 			var remaining = app.todos.remaining().length;
 
 			if (app.todos.length) {
+				// We need to re-order the elements of the itemized list
+
+
+			$('#todo-list li').sortElements(function(a, b){
+			  return $(a).attr("sort-by") > $(b).attr("sort-by") ? 1 : -1;
+			});
+
+		  $(".new-day").removeClass("new-day");
+
+		  var t = "";
+			$('#todo-list li').each(function() {
+				  var k = $(this).attr("sort-by");
+					if (k != t) {
+						$(this).addClass("new-day");
+					}
+					t = k;
+//				  $(this).before("<li>Hello</li>")
+//				  console.log(this);
+//					t.push({ html: $(this).get(), other: $(this).attr("sort-by") } );
+			})
+
+		console.log(t);
+/*
+
+		  _.each(t,function (e) {
+				$(e).before()
+				$(e).addClass("new-day");
+				console.log(e)
+			})
+
+
+			_.each(t,function(e) {
+				$(e).before("<li>Hello<li>")
+			})
+
+
+
+/*
+
+				console.log(t);
+				t = _.sortBy(t,'other');
+
+				$("#todo-list").html("");
+				_.each(t,function(e) {
+						$("#todo-list").append(e.html);
+				});
+*/
+
 				this.$main.show();
 				this.$footer.show();
 
@@ -77,7 +127,7 @@ var app = app || {};
 		// appending its element to the `<ul>`.
 		addOne: function (todo) {
 			var view = new app.TodoView({ model: todo });
-			this.$list.append(view.render().el);
+			this.$list.prepend(view.render().el);
 		},
 
 		// Add all items in the **Todos** collection at once.

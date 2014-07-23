@@ -28,12 +28,12 @@ var app = app || {};
 	  // Move to a specific time, or bump by a specific number of days.
 		// A currently empty date is taken as today.
 		bump: function (t) {
-			console.log('bump');
 			if (_.isNumber(t)) {
 				this.set('do_on',new app.Date(this.get("do_on")).bumpDate(t).toString());
 			} else {
 					alert('bad bump')
 			}
+	    this.collection.sort()
 		}
 	});
 })();

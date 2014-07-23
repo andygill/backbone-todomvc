@@ -33,7 +33,7 @@ var app = app || {};
 		},
 
 		// Todos are sorted by their original insertion order.
-		comparator: 'order'
+		comparator: 'do_on'
 	});
 
 	// Create our global collection of **Todos**.
