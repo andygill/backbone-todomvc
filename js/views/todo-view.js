@@ -23,8 +23,9 @@ var app = app || {};
 			'click .destroy': 'clear',
 			'keypress .edit': 'updateOnEnter',
 			'keydown .edit': 'revertOnEscape',
-			'click .ego': 'tomorrow',
-			'blur .edit': 'close'
+			'click .ego': 'bump',
+			'blur .edit': 'close',
+			'droppable': 'updateDate'
 		},
 
 		// The TodoView listens for changes to its model, re-rendering. Since
@@ -56,20 +57,18 @@ var app = app || {};
 			this.$input = this.$('.edit');
 			this.$el.attr("sort-by",this.model.get('do_on'))
 			this.$el.attr("sort-by-2",this.model.get('order'))
-			$( ".draggable" ).draggable({cursor: "move", revert: true, helper: "clone" });
+			$(this.$el).find('.ego').draggable({cursor: "move", revert: true, helper: "clone" });
 			return this;
 		},
 
 		toggleVisible: function () {
 			this.$el.toggleClass('hidden', this.isHidden());
-			console.log(this.isHidden())
 		},
 
 		isHidden: function () {
 			var isCompleted = this.model.get('completed');
 			var date = new app.Date(this.model.get('do_on'));
 			var isToday = date.isToday() || date.isEmpty();
-			console.log(date,isToday,app.TodoFilter)
 
 			return (// hidden cases only
 				(!isCompleted && app.TodoFilter === 'completed') ||
@@ -91,7 +90,6 @@ var app = app || {};
 
 		// Close the `"editing"` mode, saving changes to the todo.
 		close: function () {
-			console.log('close')
 			var value = this.$input.val();
 			var trimmedValue = value.trim();
 
@@ -138,9 +136,13 @@ var app = app || {};
 			}
 		},
 
-	  tomorrow: function(e) {
-			this.model.bump(1);
+	  bump: function(e) {
+			this.model.bump();
 			this.model.save({});
+		},
+
+    updateDate: function(event,date) {
+			this.model.set("do_on",date)
 		},
 
 		// Remove the item, destroy the model from *localStorage* and delete its view.

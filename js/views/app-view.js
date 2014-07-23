@@ -19,9 +19,9 @@ var app = app || {};
 
 		// Delegated events for creating new items, and clearing completed ones.
 		events: {
-			'keypress #new-todo': 'createOnEnter',
-			'click #clear-completed': 'clearCompleted',
-			'click #toggle-all': 'toggleAllComplete'
+			'keypress #new-todo': 'createOnEnter'
+//			'click #clear-completed': 'clearCompleted',
+//			'click #toggle-all': 'toggleAllComplete'
 		},
 
 		// At initialization we bind to the relevant events on the `Todos`
@@ -45,6 +45,17 @@ var app = app || {};
 			// from being re-rendered for every model. Only renders when the 'reset'
 			// event is triggered at the end of the fetch.
 			app.todos.fetch({reset: true});
+
+
+			// set up the dropable handle
+			$('.droppable').droppable({
+				drop: function (event, ui) {
+					var date = $(event.target).attr("date");
+					var parent = $(ui.draggable).trigger("droppable",date);
+					console.log(event,ui)
+				}
+			});
+
 		},
 
 		// Re-rendering the App just means refreshing the statistics -- the rest
