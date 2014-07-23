@@ -55,20 +55,26 @@ var app = app || {};
 			this.toggleVisible();
 			this.$input = this.$('.edit');
 			this.$el.attr("sort-by",this.model.get('do_on'))
+			this.$el.attr("sort-by-2",this.model.get('order'))
 			$( ".draggable" ).draggable({cursor: "move", revert: true, helper: "clone" });
 			return this;
 		},
 
 		toggleVisible: function () {
 			this.$el.toggleClass('hidden', this.isHidden());
+			console.log(this.isHidden())
 		},
 
 		isHidden: function () {
 			var isCompleted = this.model.get('completed');
+			var date = new app.Date(this.model.get('do_on'));
+			var isToday = date.isToday() || date.isEmpty();
+			console.log(date,isToday,app.TodoFilter)
+
 			return (// hidden cases only
 				(!isCompleted && app.TodoFilter === 'completed') ||
-				(isCompleted && app.TodoFilter === 'active')
-//				(isCompleted && app.TodoFilter === 'today')
+				(isCompleted && app.TodoFilter === 'active') ||
+				((isCompleted || !isToday) && app.TodoFilter === 'today')
 			);
 		},
 

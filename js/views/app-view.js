@@ -57,7 +57,12 @@ var app = app || {};
 			if (app.todos.length) {
 				// We need to re-order the elements of the itemized list
 				$('#todo-list li').sortElements(function(a, b){
-				  return $(a).attr("sort-by") >= $(b).attr("sort-by") ? 1 : -1;
+					var a1 = $(a).attr("sort-by");
+					var b1 = $(b).attr("sort-by");
+					if (a1 == b1) {
+						return parseInt($(a).attr("sort-by-2")) > parseInt($(b).attr("sort-by-2")) ? 1 : -1;
+					}
+				  return a1 > b1 ? 1 : -1;
 				});
 
 			  $(".new-day").removeClass("new-day");
