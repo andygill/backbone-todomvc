@@ -57,7 +57,7 @@ var app = app || {};
 			this.$input = this.$('.edit');
 			this.$el.attr("sort-by",this.model.get('do_on'))
 			this.$el.attr("sort-by-2",this.model.get('order'))
-			$(this.$el).find('.ego').draggable({cursor: "move", revert: true, helper: "clone" });
+			$(this.$el).find('.ego').draggable({cursor: "move", revert: true, helper: "clone", containment: 'body' });
 			return this;
 		},
 

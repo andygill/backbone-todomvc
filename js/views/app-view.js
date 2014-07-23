@@ -17,10 +17,13 @@ var app = app || {};
 		// Our template for the line of statistics at the bottom of the app.
 		statsTemplate: _.template($('#stats-template').html()),
 
+		// Our template for the smart targets
+		timetableTemplate: _.template($('#timetable-template').html()),
+
 		// Delegated events for creating new items, and clearing completed ones.
 		events: {
-			'keypress #new-todo': 'createOnEnter'
-//			'click #clear-completed': 'clearCompleted',
+			'keypress #new-todo': 'createOnEnter',
+			'click #clear-completed': 'clearCompleted',
 //			'click #toggle-all': 'toggleAllComplete'
 		},
 
@@ -31,6 +34,7 @@ var app = app || {};
 			this.allCheckbox = this.$('#toggle-all')[0];
 			this.$input = this.$('#new-todo');
 			this.$footer = this.$('#footer');
+			this.$timetable = this.$('#timetable');
 			this.$main = this.$('#main');
 			this.$list = $('#todo-list');
 
@@ -46,15 +50,6 @@ var app = app || {};
 			// event is triggered at the end of the fetch.
 			app.todos.fetch({reset: true});
 
-
-			// set up the dropable handle
-			$('.droppable').droppable({
-				drop: function (event, ui) {
-					var date = $(event.target).attr("date");
-					var parent = $(ui.draggable).trigger("droppable",date);
-					console.log(event,ui)
-				}
-			});
 
 		},
 
@@ -94,6 +89,7 @@ var app = app || {};
 					remaining: remaining
 				}));
 
+
 				this.$('#filters li a')
 					.removeClass('selected')
 					.filter('[href="#/' + (app.TodoFilter || '') + '"]')
@@ -102,6 +98,21 @@ var app = app || {};
 				this.$main.hide();
 				this.$footer.hide();
 			}
+
+			this.$timetable.html(this.timetableTemplate({
+				today:    new app.Date("today").toString(),
+				tomorrow: new app.Date("today").bumpDate(1).toString()
+			}));
+
+			// set up the dropable handle
+			$('.droppable').droppable({
+				drop: function (event, ui) {
+					var date = $(event.target).attr("date");
+					var parent = $(ui.draggable).trigger("droppable",date);
+					console.log(event,ui)
+				},
+				hoverClass: "drop-hover"
+			});
 
 			this.allCheckbox.checked = !remaining;
 		},
