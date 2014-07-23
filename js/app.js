@@ -50,10 +50,9 @@ $(function () {
 	  // *returns* Date with the date bumped
 	  this.bumpDate = function(inc) {
 			var that = this.clone();
-			if (m == null) {
-				that = new app.Date('today');
+			if (m != null) {
+				that.m.add('days',inc);
 			}
-			that.m.add('days',inc);
 			return that;
 	  }
 

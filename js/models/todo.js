@@ -25,13 +25,13 @@ var app = app || {};
 			});
 		},
 
-	  // Move to a specific time, or bump by a specific number of days.
-		// A currently empty date is taken as today.
-		bump: function (t) {
-			if (_.isNumber(t)) {
-				this.set('do_on',new app.Date(this.get("do_on")).bumpDate(t).toString());
+	  // bump by a day. A currently empty date always bumps to *today*.
+		bump: function () {
+			var date = new app.Date(this.get("do_on"));
+			if (date.isEmpty()) {
+				this.set('do_on',new app.Date("today").toString());
 			} else {
-					alert('bad bump')
+				this.set('do_on',date.bumpDate(1).toString());
 			}
 	    this.collection.sort()
 		}
