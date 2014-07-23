@@ -68,6 +68,7 @@ var app = app || {};
 			return (// hidden cases only
 				(!isCompleted && app.TodoFilter === 'completed') ||
 				(isCompleted && app.TodoFilter === 'active')
+//				(isCompleted && app.TodoFilter === 'today')
 			);
 		},
 
@@ -132,8 +133,8 @@ var app = app || {};
 		},
 
 	  tomorrow: function(e) {
-			console.log('tomorrow');
 			this.model.bump(1);
+			this.model.save({});
 		},
 
 		// Remove the item, destroy the model from *localStorage* and delete its view.

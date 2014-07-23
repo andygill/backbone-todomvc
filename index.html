@@ -26,7 +26,7 @@
 			</div>
 			<input class="edit" value="<%- title %>">
 			<span class="do-on"><%= new app.Date(do_on).toHumanString() %></span>
-			<span class="do-by"><%= new app.Date(do_on).toHumanString() %></span>
+			<span class="do-by"><%= new app.Date(do_by).toHumanString() %></span>
 		</script>
 		<script type="text/template" id="stats-template">
 			<span id="todo-count"><strong><%= remaining %></strong> <%= remaining === 1 ? 'item' : 'items' %> left</span>

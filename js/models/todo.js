@@ -14,7 +14,7 @@ var app = app || {};
 		defaults: {
 			title: '',
 			do_on:  '',			// The date the task will be undertaken
-			due:    '',					    // The date the task needs done by
+			do_by:  '',					    // The date the task needs done by
 			completed: false
 		},
 
