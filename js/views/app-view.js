@@ -68,7 +68,7 @@ var app = app || {};
 					var a1 = $(a).attr("sort-by");
 					var b1 = $(b).attr("sort-by");
 					if (a1 == b1) {
-						return parseInt($(a).attr("sort-by-2")) > parseInt($(b).attr("sort-by-2")) ? 1 : -1;
+						return parseInt($(a).attr("sort-by-2")) > parseInt($(b).attr("sort-by-2")) ? -1 : 1;
 					}
 				  return a1 > b1 ? 1 : -1;
 				});

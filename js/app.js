@@ -76,8 +76,15 @@ $(function () {
         options.url = 'http://localhost:3458' + options.url;
   });
 
-	// Crude, but works
-	var pass = prompt("TODO password?")
+
+  var pass = $.cookie("todo_pass");
+
+	console.log(pass)
+	if (pass == undefined) {
+		// Crude, but works
+		pass = prompt("TODO password?")
+		$.cookie("todo_pass",pass);
+	}
 
 	$.ajaxSetup({
 	  beforeSend: function(xhr){
