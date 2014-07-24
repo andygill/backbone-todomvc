@@ -73,8 +73,17 @@ $(function () {
   }
 
 	$.ajaxPrefilter( function( options, originalOptions, jqXHR ) {
-        options.url = 'http://localhost:3000' + options.url;
+        options.url = 'http://localhost:3458' + options.url;
   });
+
+	// Crude, but works
+	var pass = prompt("TODO password?")
+
+	$.ajaxSetup({
+	  beforeSend: function(xhr){
+	    xhr.setRequestHeader("Authorization", "Basic " + btoa("todo" + ":" + pass));
+	  }}
+	);
 
 	// kick things off by creating the `App`
 	new app.AppView();
