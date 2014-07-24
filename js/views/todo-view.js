@@ -17,7 +17,6 @@ var app = app || {};
 
 		// The DOM events specific to an item.
 		events: {
-//			'click .date-edit': function() { console.log('select')},
 			'click .toggle': 'toggleCompleted',
 			'dblclick label': 'edit',
 			'click .destroy': 'clear',
@@ -40,16 +39,6 @@ var app = app || {};
 
 		// Re-render the titles of the todo item.
 		render: function () {
-			// Backbone LocalStorage is adding `id` attribute instantly after
-			// creating a model.  This causes our TodoView to render twice. Once
-			// after creating a model and once on `id` change.  We want to
-			// filter out the second redundant render, which is caused by this
-			// `id` change.  It's known Backbone LocalStorage bug, therefore
-			// we've to create a workaround.
-			// https://github.com/tastejs/todomvc/issues/469
-			if (this.model.changed.id !== undefined) {
-				return;
-			}
 
 			this.$el.html(this.template(this.model.toJSON()));
 			this.$el.toggleClass('completed', this.model.get('completed'));
@@ -138,11 +127,10 @@ var app = app || {};
 
 	  bump: function(e) {
 			this.model.bump();
-			this.model.save({});
 		},
 
     updateDate: function(event,date) {
-			this.model.set("do_on",date)
+			this.model.do_on(date)
 		},
 
 		// Remove the item, destroy the model from *localStorage* and delete its view.

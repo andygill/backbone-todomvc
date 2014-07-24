@@ -44,12 +44,21 @@ var app = app || {};
 			this.listenTo(app.todos, 'filter', this.filterAll);
 			this.listenTo(app.todos, 'all', this.render);
 
+			this.booting = true;
+			var that = this;
+	    app.todos.fetch({
+				success: function () {
+					that.booting = false;
+					that.render();
+  			}
+			});
+
 		},
 
 		// Re-rendering the App just means refreshing the statistics -- the rest
 		// of the app doesn't change.
 		render: function () {
-			console.log('render')
+			if (this.booting) { return; }
 			var completed = app.todos.completed().length;
 			var remaining = app.todos.remaining().length;
 
@@ -115,7 +124,6 @@ var app = app || {};
 				drop: function (event, ui) {
 					var date = $(event.target).attr("date");
 					var parent = $(ui.draggable).trigger("droppable",date);
-					console.log(event,ui)
 				},
 				hoverClass: "drop-hover"
 			});
