@@ -50,10 +50,47 @@
 			<% } %>
 		</script>
 		<script type="text/template" id="timetable-template">
-			 <span class="droppable" date="">Clear Date</span><BR/>
-				<span class="droppable" date="<%= today %>">Today</span><BR/>
-				<span class="droppable" date="<%=tomorrow %>">Tomorrow</span><BR/>
-					The next day
+		<div class="lhs-timetable">
+			<% _.each(timetable,function (t) { %>
+				<span class="droppable" date="<%=	t.when %>"><%= t.what %></span><BR/>
+			<% }); %>
+			</div>
+			<div class="rhs-timetable">
+			  <% var month = moment().startOf('month'); %>
+				<% _.each([0,1],function(ix) {
+					var m = month.add('months',ix)
+					var s = parseInt(m.startOf('month').format('d'))
+					var dim = m.daysInMonth();
+					var year_month = m.format("YYYY-MM-")
+				 %>
+					<table>
+						<tr>
+							<th colspan="7"><%= m.format("MMMM") %>
+							</th>
+						</tr>
+						<tr>
+							<% _.each(["Su","Mo","Tu","We","Th","Fr","Sa"],function(n) { %>
+									<td><%= n %></td>
+							<% }); %>
+						</tr>
+
+
+						<% _.each([0,1,2,3,4,5],function(w) { %>
+							<tr>
+								<% _.each([0,1,2,3,4,5,6],function(d) {
+										var dat = w * 7 + d - s + 1;
+									%>
+									<% if (dat > 0 && dat <= dim) { %>
+										<td class="droppable" date="<%= year_month + dat %>"><%= dat %></td>
+								  <% } else { %>
+										<td></td>
+									<% } %>
+								<% }); %>
+							</tr>
+						<% }); %>
+					</table>
+				<% }); %>
+			</div>
 	  </script>
 		<script src="bower_components/todomvc-common/base.js"></script>
 		<script src="bower_components/jquery/jquery.js"></script>

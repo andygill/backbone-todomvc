@@ -1,5 +1,5 @@
 body {
-  margin: 0 200px;
+  margin: 0 150px;
 }
 
 #todoapp {
@@ -67,20 +67,40 @@ body {
 }
 
 #todo-list li.new-day {
-  border-top: 1px dotted #ccc;
-  margin-top: 3px;
+  border-top: 1px dashed #444;
+//  margin-top: 1px;
 }
 
 #timetable {
   position: fixed;
-  border: 1px solid black;
+//  border: 1px solid black;
   top: 10px;
   right: 10px;
-  font-size: 32px;
-  line-height: 1.4em;
-  text-align: right;
+/*  text-align: right; */
 }
 
 #timetable .drop-hover {
    font-weight: bold;
+   color: red;
+}
+
+#timetable .lhs-timetable {
+  float: left;
+  top: 20px;
+  position: relative;
+  font-size: 24px;
+  line-height: 1.4em;
+  margin-right: 50px;
+}
+
+#timetable .rhs-timetable {
+  float: right;
+  position: relative;
+  font-size: 18px;
+  line-height: 1em;
+}
+
+#timetable .rhs-timetable td {
+  text-align: right;
+  width: 30px;
 }

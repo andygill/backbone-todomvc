@@ -99,9 +99,22 @@ var app = app || {};
 				this.$footer.hide();
 			}
 
+	    var timetable = []
+			timetable.push({ when: "", what: "Clear" })
+			for(var i=0;i<6;i++) {
+				var date = new app.Date('today').bumpDate(i);
+				timetable.push({ when: date.toString(), what : date.toHumanString() });
+			}
+			var date = new moment().weekday(7);
+			timetable.push({ when: date.format("YYYY-MM-DD"), what : "Next Week" });
+			var date = new moment().startOf('month').add('months',1);
+			timetable.push({ when: date.format("YYYY-MM-DD"), what : "Next Month" });
+
+//			var date = new app.Date('today').weekday(7);
+//			timetable.push({ when: date.toString(), what : "Next Month" });
+
 			this.$timetable.html(this.timetableTemplate({
-				today:    new app.Date("today").toString(),
-				tomorrow: new app.Date("today").bumpDate(1).toString()
+				timetable:    timetable
 			}));
 
 			// set up the dropable handle
