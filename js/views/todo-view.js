@@ -57,12 +57,12 @@ var app = app || {};
 		isHidden: function () {
 			var isCompleted = this.model.get('completed');
 			var date = new app.Date(this.model.get('do_on'));
-			var isToday = date.isToday() || date.isEmpty();
+			var isTodayOrBefore = date.isToday() || date.isEmpty() || date.isPast();
 
 			return (// hidden cases only
 				(!isCompleted && app.TodoFilter === 'completed') ||
 				(isCompleted && app.TodoFilter === 'active') ||
-				((isCompleted || !isToday) && app.TodoFilter === 'today')
+				((isCompleted || !isTodayOrBefore) && app.TodoFilter === 'today')
 			);
 		},
 
